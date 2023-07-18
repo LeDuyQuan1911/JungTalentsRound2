@@ -118,7 +118,9 @@ section {
 
 @media only screen and (min-width: 35em) {
     .menu__link.texttransform {
-        text-decoration: underline;
+        background-color: rgb(150, 148, 148);
+        font-weight: 900px;
+        /* font-size: 20px; */
     }
 
     .landing__container {
@@ -231,6 +233,7 @@ section.your-active-class {
         rgba(0, 0, 0, 0.1) 0%,
         rgba(0, 0, 0, 0) 100%
     );
+    
 }
 
 section.your-active-class .landing__container::before {
@@ -251,4 +254,8 @@ section.your-active-class .landing__container::after {
     to {
         transform: rotate(360deg) translate(-1em) rotate(-360deg);
     }
+}
+
+#navbar__list li a {
+    transition: ease 0.5s all;
 }

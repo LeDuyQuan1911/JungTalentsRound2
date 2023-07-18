@@ -23,13 +23,54 @@
  * 
 */
 
+//Task 1
+        let sections = document.querySelectorAll("section");
+        let nameSections = [];
+        let idSections = [];
+        const nav_list = document.querySelector("#navbar__list");
+        let i = 0;
+
+//Task 4
+        const scrollToTopButton = document.querySelector(".scroll-to-top");
+
+//Task 5
+        const fixedNav = document.querySelector(".page__header");
+
+
 
 /**
  * End Global Variables
  * Start Helper Functions
  * 
 */
+const Distance = function(distance,result,Indexnav,links){
+    if (distance >= -20 && distance <= 100) {
+                        Indexnav.classList.add("your-active-class");
+                        for (link of links) {
+                            if (
+                                link.href.substring(
+                                    link.href.length,
+                                    link.href.search("#") + 1
+                                ) == result
+                            ) {
+                                link.classList.add("texttransform");
+                            } else {
+                                link.classList.remove("texttransform");
+                            }
+                        }
+                    } else {
+                        Indexnav.classList.remove("your-active-class");
+                    }
+}
 
+
+function showFixedNav() {
+            fixedNav.classList.remove("hide");
+            window.clearTimeout(isScrolling);
+            isScrolling = setTimeout(function () {
+              fixedNav.classList.add("hide");
+            }, 2000);
+        }
 
 
 /**
@@ -40,16 +81,11 @@
 
 // build the nav
 
-let sections = document.querySelectorAll("section");
-        let nameSections = [];
-        let idSections = [];
-        for (const section of sections) {
+for (const section of sections) {
             nameSections.push(section.querySelector("h2").textContent);
             idSections.push(section.getAttribute("id"));
         }
 
-const nav_list = document.querySelector("#navbar__list");
-        let i = 0;
         for (let idSection of idSections) {
             const li = document.createElement("li");
             const a = document.createElement("a");
@@ -68,23 +104,7 @@ const nav_list = document.querySelector("#navbar__list");
                 for (let Indexnav of Indexnavs) {
                     const result = Indexnav.id;
                     const distance = Indexnav.getBoundingClientRect().top.toFixed();
-                    if (distance >= -20 && distance <= 100) {
-                        Indexnav.classList.add("your-active-class");
-                        for (link of links) {
-                            if (
-                                link.href.substring(
-                                    link.href.length,
-                                    link.href.search("#") + 1
-                                ) == result
-                            ) {
-                                link.classList.add("texttransform");
-                            } else {
-                                link.classList.remove("texttransform");
-                            }
-                        }
-                    } else {
-                        Indexnav.classList.remove("your-active-class");
-                    }
+                    Distance(distance,result,Indexnav,links)
                 }
             });
 
@@ -107,8 +127,6 @@ const nav_list = document.querySelector("#navbar__list");
         }
 
           //Top button on the page
-        const scrollToTopButton = document.querySelector(".scroll-to-top");
-        console.log(window.screen.availHeight);
         window.addEventListener("scroll", function () {
             if (window.pageYOffset > window.screen.availHeight) {
                 scrollToTopButton.classList.add("show");
@@ -123,8 +141,6 @@ const nav_list = document.querySelector("#navbar__list");
         });
 
           //Hide fixed navigation bar
-        const fixedNav = document.querySelector(".page__header");
-
         let isScrolling;
         let lastMousePos = { x: -1, y: -1 };
         window.addEventListener("scroll", function () {
@@ -144,13 +160,6 @@ const nav_list = document.querySelector("#navbar__list");
             }
         });
 
-        function showFixedNav() {
-            fixedNav.classList.remove("hide");
-            window.clearTimeout(isScrolling);
-            isScrolling = setTimeout(function () {
-              fixedNav.classList.add("hide");
-            }, 2000);
-        }
 
 
 
@@ -164,8 +173,6 @@ const nav_list = document.querySelector("#navbar__list");
 // Build menu 
 
 // Scroll to section on link click
-
-
 
 // Set sections as active
 
