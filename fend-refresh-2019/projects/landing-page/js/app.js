@@ -26,8 +26,8 @@
 //Task 1
         let sections = document.querySelectorAll("section");
         let nameSections = [];
-        let idSections = [];
-        const nav_list = document.querySelector("#navbar__list");
+        let targetIds  = [];
+        const navList = document.querySelector("#navbar__list");
         let i = 0;
 
 //Task 4
@@ -43,9 +43,9 @@
  * Start Helper Functions
  * 
 */
-const Distance = function(distance,result,Indexnav,links){
+const Distance = function(distance,result,indexNav,links){
     if (distance >= -20 && distance <= 100) {
-                        Indexnav.classList.add("your-active-class");
+        indexNav.classList.add("your-active-class");
                         for (link of links) {
                             if (
                                 link.href.substring(
@@ -59,7 +59,7 @@ const Distance = function(distance,result,Indexnav,links){
                             }
                         }
                     } else {
-                        Indexnav.classList.remove("your-active-class");
+                        indexNav.classList.remove("your-active-class");
                     }
 }
 
@@ -83,28 +83,28 @@ function showFixedNav() {
 
 for (const section of sections) {
             nameSections.push(section.querySelector("h2").textContent);
-            idSections.push(section.getAttribute("id"));
+            targetIds.push(section.getAttribute("id"));
         }
 
-        for (let idSection of idSections) {
+        for (let targetId of targetIds) {
             const li = document.createElement("li");
             const a = document.createElement("a");
-            a.setAttribute("href", `#${idSection}`);
+            a.setAttribute("href", `#${targetId}`);
             a.textContent = nameSections[i];
             li.appendChild(a);
             a.classList.add("menu__link");
-            nav_list.appendChild(li);
+            navList.appendChild(li);
             i++;
 
 
             // Add class 'active' to section when near top of viewport
             let links = document.querySelectorAll("a");
-            let Indexnavs = document.querySelectorAll("section");
+            let indexNavs = document.querySelectorAll("section");
             window.addEventListener("scroll", function (event) {
-                for (let Indexnav of Indexnavs) {
-                    const result = Indexnav.id;
-                    const distance = Indexnav.getBoundingClientRect().top.toFixed();
-                    Distance(distance,result,Indexnav,links)
+                for (let indexNav of indexNavs) {
+                    const result = indexNav.id;
+                    const distance = indexNav.getBoundingClientRect().top.toFixed();
+                    Distance(distance,result,indexNav,links)
                 }
             });
 
