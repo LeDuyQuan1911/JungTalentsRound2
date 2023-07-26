@@ -21,6 +21,17 @@ body {
     color: #fff;
 }
 
+.navbar__menu .menu__link:hover {
+    background: #333;
+    color: #fff;
+    transition: ease 0.3s all;
+}
+.menu__link.texttransform {
+    background-color: rgb(150, 148, 148);
+    font-weight: 900px;
+    /* font-size: 20px; */
+}
+
 /* Typeography General*/
 h1 {
     font-family: "Fira Sans", sans-serif;
@@ -259,3 +270,10 @@ section.your-active-class .landing__container::after {
 #navbar__list li a {
     transition: ease 0.5s all;
 }
+
+html {
+    scroll-behavior: smooth;
+  }
+
+
+

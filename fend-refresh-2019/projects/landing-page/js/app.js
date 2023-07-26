@@ -22,28 +22,18 @@
  * Define Global Variables
  * 
 */
-
-//Task 1
         let sections = document.querySelectorAll("section");
         let nameSections = [];
         let targetIds  = [];
         const navList = document.querySelector("#navbar__list");
-        let i = 0;
-
-//Task 4
         const scrollToTopButton = document.querySelector(".scroll-to-top");
-
-//Task 5
         const fixedNav = document.querySelector(".page__header");
-
-
-
 /**
  * End Global Variables
  * Start Helper Functions
  * 
 */
-const Distance = function(distance,result,indexNav,links){
+const toggleNavClass = function(distance,result,indexNav,links){
     if (distance >= -20 && distance <= 100) {
         indexNav.classList.add("your-active-class");
                         for (link of links) {
@@ -86,6 +76,8 @@ for (const section of sections) {
             targetIds.push(section.getAttribute("id"));
         }
 
+
+        let i = 0;
         for (let targetId of targetIds) {
             const li = document.createElement("li");
             const a = document.createElement("a");
@@ -104,7 +96,7 @@ for (const section of sections) {
                 for (let indexNav of indexNavs) {
                     const result = indexNav.id;
                     const distance = indexNav.getBoundingClientRect().top.toFixed();
-                    Distance(distance,result,indexNav,links)
+                    toggleNavClass(distance,result,indexNav,links)
                 }
             });
 
@@ -114,13 +106,13 @@ for (const section of sections) {
             for (link of links) {
                 link.addEventListener("click", (e) => {
                     e.preventDefault();
-                    let ConnectTo = event.target.href.substring(
+                    let connectTo = event.target.href.substring(
                         event.target.href.length,
                         event.target.href.search("#")
                     );
                     window.scrollTo(
                         0,
-                        document.querySelector(ConnectTo).offsetTop
+                        document.querySelector(connectTo).offsetTop
                     );
                 });
             }
@@ -160,20 +152,5 @@ for (const section of sections) {
             }
         });
 
-
-
-
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
 
 
